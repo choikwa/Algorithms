@@ -27,7 +27,7 @@ class Node:
 nodelist = []
 id = 0
 for i,row in enumerate(grid):
-  print row
+  print(row)
   for j,entry in enumerate(row):
     newNode = Node(id, entry, [])
     if i < GRIDL-1:  # edge to below
@@ -41,9 +41,9 @@ for i,row in enumerate(grid):
     id+=1
     
 for node in nodelist:
-  print node
+  print(node)
   
-from Queue import Queue
+from queue import Queue
 
 def Djikstra(nodelist):
   def findDist(node):
@@ -60,37 +60,37 @@ def Djikstra(nodelist):
   node.dist = node.weight
   
   # BFS
-  queue = Queue()
-  queue.put(node.id)
-  while not queue.empty():
-    node = nodelist[queue.get()]
+  Q = Queue()
+  Q.put(node.id)
+  while not Q.empty():
+    node = nodelist[Q.get()]
     findDist(node)
-    print node.id, "pushing", node.out, "queue", queue.queue
+    print(node.id, "pushing", node.out, "queue", Q.queue)
     for outId in node.out:
-      if outId not in queue.queue:
-        queue.put(outId)
+      if outId not in Q.queue:
+        Q.put(outId)
 
 Djikstra(nodelist)
 
-print "------------------------------------------"
+print("------------------------------------------")
 for node in nodelist:
-  print node
+  print(node)
 
-print "------------------------------------------"
+print("------------------------------------------")
 for i in range(GRIDL):
   ss = ""
   for j in range(GRIDL):
     ss += str(nodelist[i*GRIDL+j].weight).rjust(2) + ","
   ss = ss[:-1]
-  print ss
+  print(ss)
   
-print "------------------------------------------"
+print("------------------------------------------")
 for i in range(GRIDL):
   ss = ""
   for j in range(GRIDL):
     ss += str(nodelist[i*GRIDL+j].dist).rjust(2) + ","
   ss = ss[:-1]
-  print ss
+  print(ss)
   
 def findReverseDigraph(nodelist):
   root = nodelist[0]
@@ -105,7 +105,7 @@ def findReverseDigraph(nodelist):
         inList.append(node.id)
   return rnodelist
 
-print "------------------------------------------"
+print("------------------------------------------")
 rnodelist = findReverseDigraph(nodelist)
-#for rnode in rnodelist:
-#  print rnode
+for rnode in rnodelist:
+  print(rnode)
